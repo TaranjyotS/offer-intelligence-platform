@@ -28,20 +28,17 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.1"
-
-      - name: Show versions
-        run: |
-          node -v
-          npm -v
-
-      - name: Upgrade npm
-        run: npm install -g npm@latest
+          cache: "pnpm"
+          cache-dependency-path: frontend/pnpm-lock.yaml
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund --legacy-peer-deps
+        run: pnpm install --frozen-lockfile
 
       - name: Build frontend
-        run: npm run build
+        run: pnpm build
