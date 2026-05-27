@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: offer-intelligence-platform-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.backend
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: APP_NAME
+        value: Offer Intelligence Platform
+      - key: API_V1_PREFIX
+        value: /api/v1
+      - key: LOG_LEVEL
+        value: INFO
+      - key: PREDICTION_CONCURRENCY
+        value: 5
+      - key: AUTH_MODE
+        value: demo_jwt
+      - key: DEMO_USERNAME
+        value: admin
+      - key: DEMO_PASSWORD
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ISSUER
+        value: offer-intelligence-platform
+      - key: JWT_AUDIENCE
+        value: offer-intelligence-dashboard
+      - key: JWT_ACCESS_TOKEN_MINUTES
+        value: 60
+      # Replace this after Vercel gives you the production frontend URL.
+      - key: BACKEND_CORS_ORIGINS
+        value: http://localhost:5173

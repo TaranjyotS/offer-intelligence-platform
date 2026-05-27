@@ -17,3 +17,19 @@ python scripts/seed_member_data.py --username admin --password demo123
 python scripts/generate_load.py --username admin --password demo123 --requests 100 --concurrency 20
 ./scripts/start-dev.sh
 ```
+
+## Generate Deployment JWT Secret
+
+For local development, the API can generate a temporary JWT secret automatically.
+For production, use a stable secret so existing tokens remain valid after restarts.
+
+```bash
+python scripts/generate_jwt_secret.py
+```
+
+Render Blueprint deployments can generate this automatically with:
+
+```yaml
+- key: JWT_SECRET
+  generateValue: true
+```

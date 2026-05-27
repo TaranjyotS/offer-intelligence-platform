@@ -46,7 +46,7 @@ def create_access_token(username: str) -> str:
         "aud": settings.jwt_audience,
     }
     signing_input = f"{_b64url_encode(json.dumps(header, separators=(',', ':')).encode())}.{_b64url_encode(json.dumps(payload, separators=(',', ':')).encode())}"
-    signature = hmac.new(settings.jwt_secret.get_secret_value().encode(), signing_input.encode(), hashlib.sha256).digest()
+    signature = hmac.new(settings.jwt_secret.get_secret_value().encode() if settings.jwt_secret else b"", signing_input.encode(), hashlib.sha256).digest()
     return f"{signing_input}.{_b64url_encode(signature)}"
 
 
@@ -55,7 +55,7 @@ def decode_access_token(token: str) -> dict[str, Any]:
     try:
         header_b64, payload_b64, signature_b64 = token.split(".")
         signing_input = f"{header_b64}.{payload_b64}"
-        expected_signature = hmac.new(settings.jwt_secret.get_secret_value().encode(), signing_input.encode(), hashlib.sha256).digest()
+        expected_signature = hmac.new(settings.jwt_secret.get_secret_value().encode() if settings.jwt_secret else b"", signing_input.encode(), hashlib.sha256).digest()
         if not hmac.compare_digest(_b64url_encode(expected_signature), signature_b64):
             raise ValueError("Invalid token signature")
         header = json.loads(_b64url_decode(header_b64))

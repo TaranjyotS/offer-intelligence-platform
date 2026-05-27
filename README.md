@@ -38,6 +38,18 @@ It is designed as a **portfolio-grade backend and ML-systems project** that demo
 
 ---
 
+## 🌐 Live Demo
+
+<div align="center">
+
+|                    Frontend               |                  Backend API Docs                |
+|-------------------------------------------|--------------------------------------------------|
+|  |  |
+
+</div>
+
+---
+
 ## ✨ Features
 
 <table>
