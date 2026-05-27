@@ -9,6 +9,8 @@ htmlcov/
 .ruff_cache/
 .mypy_cache/
 .pytype/
+
+# Backend
 backend/.pytest_cache
 backend/.ruff_cache
 backend/app/__pycache__
@@ -22,3 +24,9 @@ dist/
 .DS_Store
 .vscode/
 .idea/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+node_modules/
+dist/
