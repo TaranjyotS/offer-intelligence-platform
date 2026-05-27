@@ -42,9 +42,9 @@ It is designed as a **portfolio-grade backend and ML-systems project** that demo
 
 <div align="center">
 
-|                    Frontend               |                  Backend API Docs                |
-|-------------------------------------------|--------------------------------------------------|
-|  |  |
+|                      Frontend                   |                       Backend API Docs                    |
+|-------------------------------------------------|-----------------------------------------------------------|
+| https://offer-intelligence-platform.vercel.app/ | https://offer-intelligence-platform-api.onrender.com/docs |
 
 </div>
 
