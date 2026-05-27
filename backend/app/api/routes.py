@@ -5,8 +5,8 @@ from app.core.security import AuthenticatedUser, create_access_token, get_curren
 from app.schemas.auth import LoginRequest, RegisterRequest, TokenResponse, UserResponse
 from app.schemas.offer import HealthResponse, MemberHistoryResponse, OfferRequest, OfferResponse
 from app.services.member_store import member_store
-from app.services.user_store import InvalidCredentialsError, UserAlreadyExistsError, user_store
 from app.services.orchestrator import orchestrator
+from app.services.user_store import InvalidCredentialsError, UserAlreadyExistsError, user_store
 
 router = APIRouter()
 
@@ -60,8 +60,14 @@ def login(request: LoginRequest) -> TokenResponse:
 
 
 @router.get("/auth/me", response_model=UserResponse, tags=["auth"])
-def read_current_user(current_user: AuthenticatedUser = Depends(get_current_user)) -> UserResponse:
-    return UserResponse(username=current_user.username, auth_provider=current_user.auth_provider, role=current_user.role)
+def read_current_user(
+    current_user: AuthenticatedUser = Depends(get_current_user),
+) -> UserResponse:
+    return UserResponse(
+        username=current_user.username,
+        auth_provider=current_user.auth_provider,
+        role=current_user.role,
+    )
 
 
 @router.post("/offers", response_model=OfferResponse, tags=["offers"])

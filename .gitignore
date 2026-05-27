@@ -6,6 +6,12 @@ __pycache__/
 htmlcov/
 .venv/
 .env
+.ruff_cache/
+.mypy_cache/
+.pytype/
+backend/.pytest_cache
+backend/.ruff_cache
+backend/app/__pycache__
 
 # Node
 node_modules/

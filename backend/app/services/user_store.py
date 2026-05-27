@@ -36,14 +36,30 @@ class UserStore:
         self._bootstrap_demo_users()
 
     def _hash_password(self, password: str, salt: str) -> str:
-        return hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt.encode("utf-8"), 120_000).hex()
+        return hashlib.pbkdf2_hmac(
+            "sha256",
+            password.encode("utf-8"),
+            salt.encode("utf-8"),
+            120_000,
+        ).hex()
 
     def _bootstrap_demo_users(self) -> None:
         settings = get_settings()
         for username in {settings.demo_username, "tara", "demo"}:
-            self.create_user(username=username, password=settings.demo_password.get_secret_value(), role="Administrator", allow_existing=True)
+            self.create_user(
+                username=username,
+                password=settings.demo_password.get_secret_value(),
+                role="Administrator",
+                allow_existing=True,
+            )
 
-    def create_user(self, username: str, password: str, role: str = "Operator", allow_existing: bool = False) -> StoredUser:
+    def create_user(
+        self,
+        username: str,
+        password: str,
+        role: str = "Operator",
+        allow_existing: bool = False,
+    ) -> StoredUser:
         normalized_username = username.strip().lower()
         if normalized_username in self._users:
             if allow_existing:

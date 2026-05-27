@@ -23,8 +23,7 @@ class PredictionService:
             prediction=prediction,
             confidence=round(confidence, 2),
             explanation=(
-                "Estimated member value based on recent points activity, "
-                "lifetime history, and transaction mix."
+                "Estimated member value based on recent points activity, " "lifetime history, and transaction mix."
             ),
         )
 
