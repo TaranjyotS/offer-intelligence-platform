@@ -1,8 +1,18 @@
-.env
-ML Offer Orchestrator.postman_collection.json
-coverage.xml
-htmlcov/
+# Python
 __pycache__/
-.coverage
-*.pyc
+*.py[cod]
 .pytest_cache/
+.coverage
+htmlcov/
+.venv/
+.env
+
+# Node
+node_modules/
+dist/
+.npm/
+
+# OS/IDE
+.DS_Store
+.vscode/
+.idea/
